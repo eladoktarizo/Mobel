@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.eladoktarizo.mobel">
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".app.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Register" />
+        <activity android:name=".MenuOrtu" />
+        <activity android:name=".DaftarAnak" />
+        <activity android:name=".DataAnak" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Login" />
+        <activity android:name=".Monitoring" />
+        <activity android:name=".LaporanHarian" />
+        <activity android:name=".LoginGuru" />
+        <activity android:name=".TentangAplikasi" />
+        <activity android:name=".DetailDataAnak" />
+        <activity android:name=".TambahDataAnak" />
+        <activity android:name=".DetailMonitoring" />
+        <activity
+            android:name=".ProfilGuru"
+            android:label="@string/title_activity_profil_guru"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".TambahLaporanHarian" />
+        <activity android:name=".EditMonitoring" />
+        <activity android:name=".MenuGuru" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".PilihanLogin" />
+        <activity android:name=".DataAnakGuruSide" />
+
+        <service android:name=".FcmInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".FcmMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
