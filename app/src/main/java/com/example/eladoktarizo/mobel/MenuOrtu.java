@@ -9,10 +9,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +24,20 @@ import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 import android.content.SharedPreferences;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.eladoktarizo.mobel.R;
 
 public class MenuOrtu extends AppCompatActivity {
-    ImageView dataanakortu, monitoring, profilguru, tentang, logout;
+    Button dataanakortu, monitoring, profilguru, tentang, logout;
     Intent i;
     String id_ortu;
     SharedPreferences sharedpreferences;
 
     public static final String TAG_ID = "id";
     public static final String TAG_USERNAME = "username";
+
+    final String TAG = this.getClass().getName();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -48,10 +53,10 @@ public class MenuOrtu extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
 
-        dataanakortu = (ImageView) findViewById(R.id.dataanakortu);
-        monitoring = (ImageView) findViewById(R.id.monitoring);
-        profilguru = (ImageView) findViewById(R.id.profilguru);
-        tentang = (ImageView) findViewById(R.id.tentang);
+        dataanakortu = (Button) findViewById(R.id.dataanakortu);
+        monitoring = (Button) findViewById(R.id.monitoring);
+        profilguru = (Button) findViewById(R.id.profilguru);
+        tentang = (Button) findViewById(R.id.tentang);
             //logout = (Button) findViewById(R.id.btn_logout);
 
 
@@ -91,12 +96,37 @@ public class MenuOrtu extends AppCompatActivity {
             });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    boolean twice;
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "klik");
+        if (twice == true){
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        }
+        twice = true;
+        Log.d(TAG, "twice :" + twice);
+        //super.onBackPressed();
+        Toast.makeText(MenuOrtu.this, "Tekan tombol sekali lagi untuk keluar aplikasi", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                twice = false;
+                Log.d(TAG, "twice :" + twice);
+            }
+        }, 3000);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -120,13 +150,8 @@ public class MenuOrtu extends AppCompatActivity {
             default:
                 return false;
         }
-    }
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 
 }

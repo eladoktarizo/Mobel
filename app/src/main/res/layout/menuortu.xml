@@ -21,115 +21,115 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/dataanakortu"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:clickable="true"
-        android:layout_alignStart="@+id/profilguru"
-        android:layout_alignTop="@+id/monitoring"
-        app:srcCompat="@mipmap/ic_dataanak" />
+    <!--<ImageView-->
+        <!--android:id="@+id/dataanakortu"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_alignStart="@+id/profilguru"-->
+        <!--android:layout_alignTop="@+id/monitoring"-->
+        <!--app:srcCompat="@mipmap/ic_dataanak" />-->
 
-    <ImageView
-        android:id="@+id/monitoring"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:clickable="true"
-        android:layout_above="@+id/tentang"
-        android:layout_marginBottom="82dp"
-        android:layout_toEndOf="@+id/profilguru"
-        app:srcCompat="@mipmap/ic_monitoring" />
+    <!--<ImageView-->
+        <!--android:id="@+id/monitoring"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_above="@+id/tentang"-->
+        <!--android:layout_marginBottom="82dp"-->
+        <!--android:layout_toEndOf="@+id/profilguru"-->
+        <!--app:srcCompat="@mipmap/ic_monitoring" />-->
 
-    <ImageView
-        android:id="@+id/profilguru"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:clickable="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="89dp"
-        android:layout_marginEnd="23dp"
-        android:layout_toStartOf="@+id/tentang"
-        app:srcCompat="@mipmap/ic_profilguru" />
+    <!--<ImageView-->
+        <!--android:id="@+id/profilguru"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="89dp"-->
+        <!--android:layout_marginEnd="23dp"-->
+        <!--android:layout_toStartOf="@+id/tentang"-->
+        <!--app:srcCompat="@mipmap/ic_profilguru" />-->
 
-    <ImageView
-        android:id="@+id/tentang"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:clickable="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/profilguru"
-        android:layout_marginEnd="25dp"
-        app:srcCompat="@mipmap/ic_tentang" />
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/TextView1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginBottom="5dp"-->
-            <!--android:layout_marginTop="65dp"-->
-            <!--android:text="MENU ORANG TUA"-->
-            <!--android:background="#00555555"-->
-            <!--android:textSize="22dip"-->
-            <!--android:textStyle="bold" />-->
-
-        <!--<View-->
-            <!--android:id="@+id/View1"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="#448AFF" />-->
+    <!--<ImageView-->
+        <!--android:id="@+id/tentang"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignTop="@+id/profilguru"-->
+        <!--android:layout_marginEnd="25dp"-->
+        <!--app:srcCompat="@mipmap/ic_tentang" />-->
 
 
-        <!--<Button-->
-            <!--android:id="@+id/dataanakortu"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:background="#448AFF"-->
-            <!--android:textColor="#fff"-->
-            <!--android:text="DATA ANAK"-->
-            <!--android:textStyle="bold" />-->
-        <!--<Button-->
-            <!--android:id="@+id/monitoring"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:background="#448AFF"-->
-            <!--android:textColor="#fff"-->
-            <!--android:text="MONITORING"-->
-            <!--android:textStyle="bold" />-->
-        <!--<Button-->
-            <!--android:id="@+id/profilguru"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:background="#448AFF"-->
-            <!--android:textColor="#fff"-->
-            <!--android:text="PROFIL GURU"-->
-            <!--android:textStyle="bold" />-->
-        <!--<Button-->
-            <!--android:id="@+id/tentang"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:background="#448AFF"-->
-            <!--android:textColor="#fff"-->
-            <!--android:text="TENTANG APLIKASI"-->
-            <!--android:textStyle="bold" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
-    <!--</LinearLayout>-->
+        <TextView
+            android:id="@+id/TextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="65dp"
+            android:text="MENU ORANG TUA"
+            android:background="#00555555"
+            android:textSize="22dip"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/View1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="#448AFF" />
+
+
+        <Button
+            android:id="@+id/dataanakortu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#448AFF"
+            android:textColor="#fff"
+            android:text="DATA ANAK"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/monitoring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#448AFF"
+            android:textColor="#fff"
+            android:text="MONITORING"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/profilguru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#448AFF"
+            android:textColor="#fff"
+            android:text="PROFIL GURU"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/tentang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#448AFF"
+            android:textColor="#fff"
+            android:text="TENTANG APLIKASI"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </RelativeLayout>
