@@ -1,5 +1,6 @@
 package com.example.eladoktarizo.mobel;
 
+import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,13 +52,14 @@ import java.util.Map;
 
 public class TambahDataAnak extends AppCompatActivity {
 
-    EditText td_id_anak, td_namaanak, td_noindukanak, td_ttlanak, td_umuranak, td_namaibu, td_id_ortu;
+    EditText td_id_anak, td_namaanak, td_noindukanak, td_tempatlahir, td_tanggallahir, td_namaibu, td_id_ortu;
     //String id_ortu;
     Button btnsimpan;
     ImageView ivCamera, ivGallery, ivUpload, ivImage;
     ProgressDialog pd;
     Intent i;
     String id_ortu, stringImage64;
+    private int mYear, mMonth, mDay;
 
     CameraPhoto cameraPhoto;
     GalleryPhoto galleryPhoto;
@@ -104,8 +108,8 @@ public class TambahDataAnak extends AppCompatActivity {
         String intent_id_ortu       =  data.getStringExtra("id_ortu");
         String intent_noinduk_anak  =  data.getStringExtra("noinduk_anak");
         String intent_namaanak      =  data.getStringExtra("nama_lengkap");
-        String intent_ttlanak       =  data.getStringExtra("ttlahir");
-        String intent_umur          =  data.getStringExtra("umur");
+        String intent_tempat_lahir   =  data.getStringExtra("tempat_lahir");
+        String intent_tanggal_lahir  =  data.getStringExtra("tanggal_lahir");
         String intent_namaibu       =  data.getStringExtra("namaibu");
 
         id_ortu         = getIntent().getStringExtra("id_ortu");
@@ -113,11 +117,12 @@ public class TambahDataAnak extends AppCompatActivity {
         td_id_anak      = (EditText) findViewById(R.id.td_id_anak);
         td_noindukanak  = (EditText) findViewById(R.id.td_noindukanak);
         td_namaanak     = (EditText) findViewById(R.id.td_namaanak);
-        td_ttlanak      = (EditText) findViewById(R.id.td_ttlanak);
-        td_umuranak     = (EditText) findViewById(R.id.td_umuranak);
+        td_tempatlahir  = (EditText) findViewById(R.id.td_tempatlahir);
+        td_tanggallahir = (EditText) findViewById(R.id.td_tanggallahir);
         td_namaibu      = (EditText) findViewById(R.id.td_namaibu);
 
         //id_ortu = getIntent().getStringExtra("id_ortu");
+
 
         btnsimpan = (Button) findViewById(R.id.btnsimpan);
 
@@ -128,14 +133,37 @@ public class TambahDataAnak extends AppCompatActivity {
 
         pd          = new ProgressDialog(TambahDataAnak.this);
 
+        td_tanggallahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TambahDataAnak.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                td_tanggallahir.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
         if (update == 1)
         {
             btnsimpan.setText("Update Data");
             td_id_anak.setText(intent_id_anak);
             td_id_ortu.setText(intent_id_ortu);
             td_namaanak.setText(intent_namaanak);
-            td_ttlanak.setText(intent_ttlanak);
-            td_umuranak.setText(intent_umur);
+            td_tempatlahir.setText(intent_tempat_lahir);
+            td_tanggallahir.setText(intent_tanggal_lahir);
             td_namaibu.setText(intent_namaibu);
 
         }
@@ -325,8 +353,8 @@ public class TambahDataAnak extends AppCompatActivity {
                 map.put("id_anak",td_id_anak.getText().toString());
                 map.put("noinduk_anak",td_noindukanak.getText().toString());
                 map.put("nama_lengkap",td_namaanak.getText().toString());
-                map.put("ttlahir",td_ttlanak.getText().toString());
-                map.put("umur",td_umuranak.getText().toString());
+                map.put("tempat_lahir",td_tempatlahir.getText().toString());
+                map.put("tanggal_lahir",td_tanggallahir.getText().toString());
                 map.put("namaibu",td_namaibu.getText().toString());
                 map.put("id_ortu",id_ortu);
                 map.put("image", stringImage64);
@@ -371,8 +399,8 @@ public class TambahDataAnak extends AppCompatActivity {
                 map.put("id_anak",td_id_anak.getText().toString());
                 map.put("noinduk_anak",td_noindukanak.getText().toString());
                 map.put("nama_lenglap",td_namaanak.getText().toString());
-                map.put("ttlahir",td_ttlanak.getText().toString());
-                map.put("umur",td_umuranak.getText().toString());
+                map.put("tempat_lahir",td_tempatlahir.getText().toString());
+                map.put("tanggal_lahir",td_tanggallahir.getText().toString());
                 map.put("namaibu",td_namaibu.getText().toString());
                 //map.put("id_ortu",td_id_ortu.getText().toString());
 
