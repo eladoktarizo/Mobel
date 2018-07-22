@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,8 +50,8 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
     LayoutInflater inflater;
     Intent intent;
     View dialogView;
-    EditText txt_id_anak, txt_noindukanak, txt_namaanak, txt_ttlanak, txt_umuranak, txt_namaibuanak, txt_id_ortu;
-    String id_anak, noinduk_anak, nama_lengkap, ttlahir, umur, namaibu, id_ortu;
+    EditText txt_id_anak, txt_noindukanak, txt_namaanak, txt_tempatlahir, txt_tanggallahir, txt_namaibuanak, txt_id_ortu;
+    String id_anak, noinduk_anak, nama_lengkap, tempat_lahir, tanggal_lahir, namaibu, id_ortu;
 
     private static final String TAG = DataAnak.class.getSimpleName();
 
@@ -64,8 +65,8 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
     public static final String TAG_ID_ANAK = "id_anak";
     public static final String TAG_NOINDUK_ANAK = "noinduk_anak";
     public static final String TAG_NAMA_LENGKAP = "nama_lengkap";
-    public static final String TAG_TTLAHIR = "ttlahir";
-    public static final String TAG_UMUR = "umur";
+    public static final String TAG_TEMPAT_LAHIR = "tempat_lahir";
+    public static final String TAG_TANGGAL_LAHIR = "tanggal_lahir";
     public static final String TAG_IMAGE = "file_foto";
     public static final String TAG_NAMAIBU = "namaibu";
     private static final String TAG_SUCCESS = "success";
@@ -95,7 +96,12 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
         adapter = new AdapterAnak(DataAnak.this, itemList);
         list.setAdapter(adapter);
 
-        // menamilkan widget refresh
+//        Intent intent = new Intent(DataAnak.this, Monitoring.class);
+//        intent.putExtra(TAG_ID_ANAK, id_anak);
+//        startActivity(intent);
+//        finish();
+
+        // menampilkan widget refresh
         swipe.setOnRefreshListener(this);
 
         swipe.post(new Runnable() {
@@ -121,17 +127,16 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
 //            }
         });
 
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                final String idx_anak = itemList.get(position).getId_anak();
-//
-//                Intent intent = new Intent(this, ActivityBaru.class);
-//                intent.putExtra("id_anak", idx_anak);
-//                startActivity(intent);
-//
-//            }
-//        });
+       list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String getidanak = ((TextView)view.findViewById(R.id.id_anak)).getText().toString();
+                Intent i = new Intent(getApplicationContext(), DetailDataAnak.class);
+                i.putExtra("id_anak",getidanak);
+                view.getContext().startActivity(i);
+            }
+        });
 
         // listview ditekan lama akan menampilkan dua pilihan edit atau delete data
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -177,14 +182,14 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
         txt_id_anak.setText(null);
         txt_noindukanak.setText(null);
         txt_namaanak.setText(null);
-        txt_ttlanak.setText(null);
-        txt_umuranak.setText(null);
+        txt_tempatlahir.setText(null);
+        txt_tanggallahir.setText(null);
         txt_namaibuanak.setText(null);
         txt_id_ortu.setText(null);
     }
 
     // untuk menampilkan dialog form dataanak
-    private void DialogForm(String idx_ortu, String idx_anak, String noindukx_anak, String namax_lengkap, String ttlahirx, String umurx, String namaibux, String button) {
+    private void DialogForm( String idx_anak, String noindukx_anak, String namax_lengkap, String ttlahirx, String umurx, String namaibux, String button) {
         dialog = new AlertDialog.Builder(DataAnak.this);
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.form_dataanak, null);
@@ -197,17 +202,17 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
         txt_id_anak = (EditText) dialogView.findViewById(R.id.txt_id_anak);
         txt_noindukanak = (EditText) dialogView.findViewById(R.id.txt_noindukanak);
         txt_namaanak = (EditText) dialogView.findViewById(R.id.txt_namaanak);
-        txt_ttlanak = (EditText) dialogView.findViewById(R.id.txt_ttlanak);
-        txt_umuranak = (EditText) dialogView.findViewById(R.id.txt_umuranak);
+        txt_tempatlahir = (EditText) dialogView.findViewById(R.id.txt_tempatlahir);
+        txt_tanggallahir = (EditText) dialogView.findViewById(R.id.txt_tanggallahir);
         txt_namaibuanak = (EditText) dialogView.findViewById(R.id.txt_namaibuanak);
 
         if (!idx_anak.isEmpty()) {
             txt_noindukanak.setText(noindukx_anak);
             txt_namaanak.setText(namax_lengkap);
-            txt_ttlanak.setText(ttlahirx);
-            txt_umuranak.setText(umurx);
+            txt_tempatlahir.setText(ttlahirx);
+            txt_tanggallahir.setText(umurx);
             txt_namaibuanak.setText(namaibux);
-            txt_id_ortu.setText(idx_ortu);
+            //txt_id_ortu.setText(idx_ortu);
         } else {
             kosong();
         }
@@ -219,8 +224,8 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                 id_anak = txt_id_anak.getText().toString();
                 noinduk_anak = txt_noindukanak.getText().toString();
                 nama_lengkap = txt_namaanak.getText().toString();
-                ttlahir = txt_ttlanak.getText().toString();
-                umur = txt_umuranak.getText().toString();
+                tempat_lahir = txt_tempatlahir.getText().toString();
+                tanggal_lahir = txt_tanggallahir.getText().toString();
                 namaibu = txt_namaibuanak.getText().toString();
                 id_ortu = txt_id_ortu.getText().toString();
 
@@ -263,7 +268,7 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                         item.setId_anak(obj.getString(TAG_ID_ANAK));
                         item.setNoinduk_anak(obj.getString(TAG_NOINDUK_ANAK));
                         item.setNama_lengkap(obj.getString(TAG_NAMA_LENGKAP));
-                        item.setUmur(obj.getString(TAG_UMUR));
+                        //item.setUmur(obj.getString(TAG_UMUR));
                         item.setIv_anak(obj.getString(TAG_IMAGE));
 
                         // menambah item ke array
@@ -275,7 +280,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
 
                 // notifikasi adanya perubahan data pada adapter
                 adapter.notifyDataSetChanged();
-
                 swipe.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
@@ -335,7 +339,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                     // JSON error
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
 
@@ -352,20 +355,20 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                 Map<String, String> params = new HashMap<String, String>();
                 // jika id kosong maka simpan, jika id ada nilainya maka update
                 if (id_anak.isEmpty()) {
-                    params.put("id_ortu", id_ortu);
+                    //params.put("id_ortu", id_ortu);
                     //params.put("id_anak", id_anak);
                     params.put("noinduk_anak", noinduk_anak);
                     params.put("nama_lengkap", nama_lengkap);
-                    params.put("ttlahir", ttlahir);
-                    params.put("umur", umur);
+                    params.put("tempat_lahir", tempat_lahir);
+                    params.put("tanggal_lahir", tanggal_lahir);
                     params.put("namaibu", namaibu);
                 } else {
-                    params.put("id_ortu", id_ortu);
+                    //params.put("id_ortu", id_ortu);
                     params.put("id_anak", id_anak);
                     params.put("noinduk_anak", noinduk_anak);
                     params.put("nama_lengkap", nama_lengkap);
-                    params.put("ttlahir", ttlahir);
-                    params.put("umur", umur);
+                    params.put("tempat_lahir", tempat_lahir);
+                    params.put("tanggal_lahir", tanggal_lahir);
                     params.put("namaibu", namaibu);
                 }
                 return params;
@@ -390,18 +393,17 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                     // Cek error node pada json
                     if (success == 1) {
                         Log.d("get edit data", jObj.toString());
-                        String idx_ortu = jObj.getString(TAG_ID_ANAK);
+                        //String idx_ortu = jObj.getString(TAG_ID_ORTU);
                         String idx_anak = jObj.getString(TAG_ID_ANAK);
                         String noindukx_anak = jObj.getString(TAG_NOINDUK_ANAK);
                         String namax_lengkap = jObj.getString(TAG_NAMA_LENGKAP);
-                        String ttlahirx = jObj.getString(TAG_TTLAHIR);
-                        String umurx = jObj.getString(TAG_UMUR);
+                        String tempatlahirx = jObj.getString(TAG_TEMPAT_LAHIR);
+                        String tanggallahirx = jObj.getString(TAG_TANGGAL_LAHIR);
                         String namaibux = jObj.getString(TAG_NAMAIBU);
 
-                        DialogForm(idx_ortu, idx_anak, noindukx_anak, namax_lengkap, ttlahirx, umurx, namaibux, "UPDATE");
+                        DialogForm(idx_anak, noindukx_anak, namax_lengkap, tempatlahirx, tanggallahirx, namaibux, "UPDATE");
 
                         adapter.notifyDataSetChanged();
-
                     } else {
                         Toast.makeText(DataAnak.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                     }
@@ -409,7 +411,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                     // JSON error
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
 
@@ -428,7 +429,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
 
                 return params;
             }
-
         };
 
         AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
@@ -451,9 +451,7 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                         Log.d("delete", jObj.toString());
 
                         callVolley();
-
                         Toast.makeText(DataAnak.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-
                         adapter.notifyDataSetChanged();
 
                     } else {
@@ -463,7 +461,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
                     // JSON error
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
 
@@ -482,7 +479,6 @@ public class DataAnak extends AppCompatActivity implements SwipeRefreshLayout.On
 
                 return params;
             }
-
         };
 
         AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);

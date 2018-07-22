@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
@@ -54,7 +53,8 @@
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background_normal"/>
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/td_noindukanak"
@@ -64,7 +64,8 @@
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background_normal"/>
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/td_tempatlahir"
@@ -74,7 +75,8 @@
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background_normal"/>
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/td_tanggallahir"
@@ -84,7 +86,8 @@
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background_normal"/>
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/td_namaibu"
@@ -94,7 +97,8 @@
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background_normal"/>
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/td_id_ortu"
@@ -132,17 +136,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="2">
 
                 <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:gravity="center"
-                android:hapticFeedbackEnabled="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:orientation="vertical">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:hapticFeedbackEnabled="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -171,30 +175,7 @@
                         android:src="@android:drawable/ic_menu_gallery" />
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:hapticFeedbackEnabled="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:id="@+id/ivUpload"
-                        android:src="@android:drawable/ic_menu_upload" />
-
-                </LinearLayout>
-
             </LinearLayout>
-
-
-
         </FrameLayout>
 
     </LinearLayout>

@@ -8,18 +8,18 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/toolbar_detail_dataanak"
+            android:id="@+id/toolbar_detail_guruside"
             layout="@layout/layout_toolbar" />
 
         <EditText
-            android:id="@+id/id_ortu_detail"
+            android:id="@+id/id_ortu_sideguru"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/editbox_background_normal"/>
 
         <EditText
-            android:id="@+id/id_anak_detail"
+            android:id="@+id/id_anak_sideguru"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,12 +48,12 @@
                 android:layout_centerVertical="true">
 
                 <EditText
-                    android:id="@+id/namaanak_detail"
+                    android:id="@+id/namaanak_sideguru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:hint="Nama Lengkap"
-                    android:textColor="#000000" />
+                    android:enabled="false"
+                    android:textColor="#000000"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +68,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/noindukanak_detail"
+                android:id="@+id/noindukanak_sideguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nomor Induk Siswa"
@@ -86,7 +86,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/tempatlahir_detail"
+                android:id="@+id/tempatlahir_sideguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tempat Lahir"
@@ -104,7 +104,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/tanggallahir_detail"
+                android:id="@+id/tanggallahir_sideguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tanggal Lahir"
@@ -122,7 +122,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/namaibu_detail"
+                android:id="@+id/namaibu_sideguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama Ibu"
@@ -153,7 +153,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/button_cancel_dataanak"
+                        android:id="@+id/button_cancel_sideguru"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.AppCompat.Button.Colored"

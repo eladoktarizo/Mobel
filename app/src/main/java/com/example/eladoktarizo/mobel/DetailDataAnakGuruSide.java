@@ -26,16 +26,16 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DetailDataAnak extends AppCompatActivity {
+public class DetailDataAnakGuruSide extends AppCompatActivity {
 
-    EditText id_anak_detail, namaanak_detail, noindukanak_detail, tempatlahir_detail, tanggallahir_detail, namaibu_detail;
+    EditText id_anak_sideguru, namaanak_sideguru, noindukanak_sideguru, tempatlahir_sideguru, tanggallahir_sideguru, namaibu_sideguru;
     CircleImageView iv_profile;
     int success;
-    Button btnbatal;
+    Button btnkembali;
 
-    private static final String TAG = DetailDataAnak.class.getSimpleName();
+    private static final String TAG = DetailDataAnakGuruSide.class.getSimpleName();
 
-    private static String url_detaildataanak	    = Server.URL + "detail_dataanak.php";
+    private static String url_detaildata	    = Server.URL + "detail_dataanak.php";
 
     public static final String TAG_ID_ANAK          = "id_anak";
     public static final String TAG_NAMALENGKAP      = "nama_lengkap";
@@ -52,10 +52,11 @@ public class DetailDataAnak extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_data_anak);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dataanak);
+        setContentView(R.layout.activity_detail_data_anak_guru_side);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail_guruside);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Data Anak");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -64,19 +65,19 @@ public class DetailDataAnak extends AppCompatActivity {
         String id_anak = i.getStringExtra("id_anak");
         Log.e("ID ANAK TERKIRIM",id_anak);
 
-        id_anak_detail = findViewById(R.id.id_anak_detail);
-        namaanak_detail = findViewById(R.id.namaanak_detail);
-        noindukanak_detail = findViewById(R.id.noindukanak_detail);
-        tempatlahir_detail = findViewById(R.id.tempatlahir_detail);
-        tanggallahir_detail = findViewById(R.id.tanggallahir_detail);
-        namaibu_detail = findViewById(R.id.namaibu_detail);
+        id_anak_sideguru = findViewById(R.id.id_anak_sideguru);
+        namaanak_sideguru = findViewById(R.id.namaanak_sideguru);
+        noindukanak_sideguru = findViewById(R.id.noindukanak_sideguru);
+        tempatlahir_sideguru = findViewById(R.id.tempatlahir_sideguru);
+        tanggallahir_sideguru = findViewById(R.id.tanggallahir_sideguru);
+        namaibu_sideguru = findViewById(R.id.namaibu_sideguru);
         iv_profile = findViewById(R.id.iv_profile);
-        btnbatal = findViewById(R.id.button_cancel_dataanak);
+        btnkembali = findViewById(R.id.button_cancel_sideguru);
 
-        btnbatal.setOnClickListener(new View.OnClickListener() {
+        btnkembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailDataAnak.this, DataAnak.class));
+                startActivity(new Intent(DetailDataAnakGuruSide.this, DataAnakGuruSide.class));
                 finish();
             }
         });
@@ -87,7 +88,7 @@ public class DetailDataAnak extends AppCompatActivity {
     // fungsi untuk get edit data
     private void lihat(final String id_anak) {
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, url_detaildataanak, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, url_detaildata, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -108,18 +109,18 @@ public class DetailDataAnak extends AppCompatActivity {
                         String tanggallahir = jObj.getString(TAG_TGLLAHIR);
                         String namaibu = jObj.getString(TAG_NAMAIBU);
 
-                        id_anak_detail.setText(idx_anak);
+                        id_anak_sideguru.setText(idx_anak);
                         Log.d("id_guru bisa", idx_anak);
-                        namaanak_detail.setText(namalengkap);
+                        namaanak_sideguru.setText(namalengkap);
                         Log.d("namalengkap",namalengkap);
-                        noindukanak_detail.setText(noinduk);
-                        tempatlahir_detail.setText(tempatlahir);
-                        tanggallahir_detail.setText(tanggallahir);
-                        namaibu_detail.setText(namaibu);
+                        noindukanak_sideguru.setText(noinduk);
+                        tempatlahir_sideguru.setText(tempatlahir);
+                        tanggallahir_sideguru.setText(tanggallahir);
+                        namaibu_sideguru.setText(namaibu);
 
                         //adapter.notifyDataSetChanged();
                     } else {
-                        Toast.makeText(DetailDataAnak.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailDataAnakGuruSide.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
@@ -131,7 +132,7 @@ public class DetailDataAnak extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(DetailDataAnak.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailDataAnakGuruSide.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 

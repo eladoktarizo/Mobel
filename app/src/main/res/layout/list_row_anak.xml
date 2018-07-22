@@ -85,10 +85,5 @@ android:padding="16dp">
         android:layout_marginBottom="2dp"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/umur"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lines="1" />
 </LinearLayout>
 </LinearLayout>

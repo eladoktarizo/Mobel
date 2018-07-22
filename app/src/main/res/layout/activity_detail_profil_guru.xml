@@ -8,18 +8,11 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/toolbar_detail_dataanak"
+            android:id="@+id/toolbar_detail_profileguru"
             layout="@layout/layout_toolbar" />
 
         <EditText
-            android:id="@+id/id_ortu_detail"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background_normal"/>
-
-        <EditText
-            android:id="@+id/id_anak_detail"
+            android:id="@+id/id_guru_dg"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +32,7 @@
                 android:src="@drawable/ic_action_icon"/>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_nama"
+                android:id="@+id/input_namaguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -48,19 +41,19 @@
                 android:layout_centerVertical="true">
 
                 <EditText
-                    android:id="@+id/namaanak_detail"
+                    android:id="@+id/namaguru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:hint="Nama Lengkap"
-                    android:textColor="#000000" />
+                    android:enabled="false"
+                    android:textColor="#000000"/>
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_nomor_induk"
+            android:id="@+id/input_pendidikan_guru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -68,17 +61,17 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/noindukanak_detail"
+                android:id="@+id/pendidikanguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nomor Induk Siswa"
+                android:hint="Pendidikan"
                 android:enabled="false"
                 android:textColor="#000000"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_tempatlahir"
+            android:id="@+id/input_tempatlahirguru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -86,7 +79,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/tempatlahir_detail"
+                android:id="@+id/tempatlahirguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tempat Lahir"
@@ -96,7 +89,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_tanggallahir"
+            android:id="@+id/input_tanggallahirguru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -104,7 +97,7 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/tanggallahir_detail"
+                android:id="@+id/tanggallahirguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tanggal Lahir"
@@ -114,7 +107,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_namaibu"
+            android:id="@+id/input_alamatguru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -122,10 +115,10 @@
             android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/namaibu_detail"
+                android:id="@+id/alamatguru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama Ibu"
+                android:hint="Alamat"
                 android:enabled="false"
                 android:textColor="#000000"/>
 
@@ -153,11 +146,11 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/button_cancel_dataanak"
+                        android:id="@+id/button_cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:text="KEMBALI" />
+                        android:text="Batal" />
 
                 </LinearLayout>
             </LinearLayout>

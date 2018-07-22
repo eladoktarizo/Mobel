@@ -1,5 +1,6 @@
 package com.example.eladoktarizo.mobel;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,40 +11,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.eladoktarizo.mobel.app.AppController;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DetailDataAnak extends AppCompatActivity {
+public class DetailProfilGuru extends AppCompatActivity {
 
-    EditText id_anak_detail, namaanak_detail, noindukanak_detail, tempatlahir_detail, tanggallahir_detail, namaibu_detail;
+    EditText id_guru_dg, namaguru, pendidikanguru, tempatlahirguru, tanggallahirguru, alamatguru;
     CircleImageView iv_profile;
     int success;
     Button btnbatal;
 
-    private static final String TAG = DetailDataAnak.class.getSimpleName();
 
-    private static String url_detaildataanak	    = Server.URL + "detail_dataanak.php";
+    private static final String TAG = DetailProfilGuru.class.getSimpleName();
 
-    public static final String TAG_ID_ANAK          = "id_anak";
-    public static final String TAG_NAMALENGKAP      = "nama_lengkap";
-    public static final String TAG_NOINDUK          = "noinduk_anak";
-    public static final String TAG_TMPLAHIR         = "tempat_lahir";
-    public static final String TAG_TGLLAHIR         = "tanggal_lahir";
-    public static final String TAG_NAMAIBU          = "namaibu";
-    public static final String TAG_IMAGE            = "file_foto";
+    private static String url_lihatdataguru	    = Server.URL + "lihat_dataguru.php";
+
+    public static final String TAG_ID_GURU          = "id_guru";
+    public static final String TAG_NAMALENGKAP      = "namalengkap";
+    public static final String TAG_ALAMAT           = "alamat";
+    public static final String TAG_PENDIDIKAN       = "pendidikan";
+    public static final String TAG_TMPLAHIR_GURU    = "tmplahir_guru";
+    public static final String TAG_TGLLAHIR_GURU    = "tgllahir_guru";
+    public static final String TAG_IMAGE            = "file_foto_gr";
     private static final String TAG_SUCCESS         = "success";
     private static final String TAG_MESSAGE         = "message";
 
@@ -52,42 +51,42 @@ public class DetailDataAnak extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_data_anak);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dataanak);
+        setContentView(R.layout.activity_detail_profil_guru);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail_profileguru);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar()!=null){
-            getSupportActionBar().setTitle("Data Anak");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Profil Guru");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         Intent i = getIntent();
-        String id_anak = i.getStringExtra("id_anak");
-        Log.e("ID ANAK TERKIRIM",id_anak);
+        String id_guru = i.getStringExtra("id_guru");
+        Log.e("id diterima",id_guru);
 
-        id_anak_detail = findViewById(R.id.id_anak_detail);
-        namaanak_detail = findViewById(R.id.namaanak_detail);
-        noindukanak_detail = findViewById(R.id.noindukanak_detail);
-        tempatlahir_detail = findViewById(R.id.tempatlahir_detail);
-        tanggallahir_detail = findViewById(R.id.tanggallahir_detail);
-        namaibu_detail = findViewById(R.id.namaibu_detail);
+        id_guru_dg = findViewById(R.id.id_guru_dg);
+        namaguru = findViewById(R.id.namaguru);
+        pendidikanguru = findViewById(R.id.pendidikanguru);
+        tempatlahirguru = findViewById(R.id.tempatlahirguru);
+        tanggallahirguru = findViewById(R.id.tanggallahirguru);
+        alamatguru = findViewById(R.id.alamatguru);
         iv_profile = findViewById(R.id.iv_profile);
-        btnbatal = findViewById(R.id.button_cancel_dataanak);
+        btnbatal = findViewById(R.id.button_cancel);
 
         btnbatal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailDataAnak.this, DataAnak.class));
+                startActivity(new Intent(DetailProfilGuru.this, ProfilGuru.class));
                 finish();
             }
         });
 
-        lihat(id_anak);
+        lihat(id_guru);
     }
-
     // fungsi untuk get edit data
-    private void lihat(final String id_anak) {
+    private void lihat(final String id_guru) {
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, url_detaildataanak, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, url_lihatdataguru, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -101,25 +100,25 @@ public class DetailDataAnak extends AppCompatActivity {
                     // Cek error node pada json
                     if (success == 1) {
                         Log.d("get guru data", jObj.toString());
-                        String idx_anak = jObj.getString(TAG_ID_ANAK);
+                        String idx_guru = jObj.getString(TAG_ID_GURU);
                         String namalengkap = jObj.getString(TAG_NAMALENGKAP);
-                        String noinduk = jObj.getString(TAG_NOINDUK);
-                        String tempatlahir = jObj.getString(TAG_TMPLAHIR);
-                        String tanggallahir = jObj.getString(TAG_TGLLAHIR);
-                        String namaibu = jObj.getString(TAG_NAMAIBU);
+                        String alamat = jObj.getString(TAG_ALAMAT);
+                        String pendidikan = jObj.getString(TAG_PENDIDIKAN);
+                        String tmplahir_guru = jObj.getString(TAG_TMPLAHIR_GURU);
+                        String tgllahir_guru = jObj.getString(TAG_TGLLAHIR_GURU);
 
-                        id_anak_detail.setText(idx_anak);
-                        Log.d("id_guru bisa", idx_anak);
-                        namaanak_detail.setText(namalengkap);
+                        id_guru_dg.setText(idx_guru);
+                        Log.d("id_guru bisa", idx_guru);
+                        namaguru.setText(namalengkap);
                         Log.d("namalengkap",namalengkap);
-                        noindukanak_detail.setText(noinduk);
-                        tempatlahir_detail.setText(tempatlahir);
-                        tanggallahir_detail.setText(tanggallahir);
-                        namaibu_detail.setText(namaibu);
+                        pendidikanguru.setText(pendidikan);
+                        tempatlahirguru.setText(tmplahir_guru);
+                        tanggallahirguru.setText(tgllahir_guru);
+                        alamatguru.setText(alamat);
 
                         //adapter.notifyDataSetChanged();
                     } else {
-                        Toast.makeText(DetailDataAnak.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailProfilGuru.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
@@ -131,7 +130,7 @@ public class DetailDataAnak extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(DetailDataAnak.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailProfilGuru.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 
@@ -139,7 +138,7 @@ public class DetailDataAnak extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters ke post url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_anak", id_anak);
+                params.put("id_guru", id_guru);
 
                 return params;
             }
@@ -147,6 +146,7 @@ public class DetailDataAnak extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

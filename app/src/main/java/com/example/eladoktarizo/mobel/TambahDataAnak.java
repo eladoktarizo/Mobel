@@ -55,7 +55,7 @@ public class TambahDataAnak extends AppCompatActivity {
     EditText td_id_anak, td_namaanak, td_noindukanak, td_tempatlahir, td_tanggallahir, td_namaibu, td_id_ortu;
     //String id_ortu;
     Button btnsimpan;
-    ImageView ivCamera, ivGallery, ivUpload, ivImage;
+    ImageView ivCamera, ivGallery, ivImage;
     ProgressDialog pd;
     Intent i;
     String id_ortu, stringImage64;
@@ -128,7 +128,7 @@ public class TambahDataAnak extends AppCompatActivity {
 
         ivCamera    = (ImageView) findViewById(R.id.ivCamera);
         ivGallery   = (ImageView) findViewById(R.id.ivGallery);
-        ivUpload    = (ImageView) findViewById(R.id.ivUpload);
+        //ivUpload    = (ImageView) findViewById(R.id.ivUpload);
         ivImage     = (ImageView) findViewById(R.id.ivImage);
 
         pd          = new ProgressDialog(TambahDataAnak.this);
@@ -149,7 +149,7 @@ public class TambahDataAnak extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
-                                td_tanggallahir.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                td_tanggallahir.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -186,13 +186,6 @@ public class TambahDataAnak extends AppCompatActivity {
             public void onClick(View v) {
                 startActivityForResult(galleryPhoto.openGalleryIntent(), GALLERY_REQUEST);
             }
-        });
-
-        ivUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-
         });
 
         btnsimpan.setOnClickListener(new View.OnClickListener() {

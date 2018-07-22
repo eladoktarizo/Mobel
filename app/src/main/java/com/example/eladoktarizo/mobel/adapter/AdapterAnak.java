@@ -61,7 +61,7 @@ public class AdapterAnak extends BaseAdapter {
         TextView id_anak      = convertView.findViewById(R.id.id_anak);
         TextView noinduk_anak = convertView.findViewById(R.id.noinduk_anak);
         TextView nama_lengkap = convertView.findViewById(R.id.nama_lengkap);
-        TextView umur         = convertView.findViewById(R.id.umur);
+//        TextView umur         = convertView.findViewById(R.id.umur);
         ImageView iv_anak     = convertView.findViewById(R.id.iv_anak);
 
         DataForAnak data = items.get(position);
@@ -69,7 +69,7 @@ public class AdapterAnak extends BaseAdapter {
         id_anak.setText(data.getId_anak());
         nama_lengkap.setText(data.getNama_lengkap());
         noinduk_anak.setText(data.getNoinduk_anak());
-        umur.setText(data.getUmur());
+//        umur.setText(data.getUmur());
         Picasso.get()
                 .load(Server.URL + data.getIv_anak())
                 .placeholder(R.drawable.ic_action_icon)

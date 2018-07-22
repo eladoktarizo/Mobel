@@ -2,6 +2,7 @@ package com.example.eladoktarizo.mobel;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,8 +52,10 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
     View dialogView;
-    EditText txt_id_guru, txt_namalengkap, txt_alamat, txt_pendidikan, txt_ttl_guru;
-    String id_guru, namalengkap, alamat, pendidikan, ttl_guru;
+
+    Intent i;
+    EditText txt_id_guru, txt_namalengkap, txt_alamat, txt_pendidikan, txt_tmplahir_guru, txt_tgllahir_guru;
+    String id_guru, namalengkap, alamat, pendidikan, tmplahir_guru, tgllahir_guru;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -62,7 +66,8 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
     public static final String TAG_NAMALENGKAP      = "namalengkap";
     public static final String TAG_ALAMAT           = "alamat";
     public static final String TAG_PENDIDIKAN       = "pendidikan";
-    public static final String TAG_TTL_GURU         = "ttl_guru";
+    public static final String TAG_TMPLAHIR_GURU    = "tmplahir_guru";
+    public static final String TAG_TGLLAHIR_GURU    = "tgllahir_guru";
     public static final String TAG_IMAGE            = "file_foto_gr";
     private static final String TAG_SUCCESS         = "success";
     private static final String TAG_MESSAGE         = "message";
@@ -104,39 +109,17 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
                    }
         );
 
-        // fungsi floating action button memanggil form biodata
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                DialogForm("", "", "","","", "SIMPAN");
-//            }
-//        });
-
-        // listview ditekan lama akan menampilkan dua pilihan edit atau delete data
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(final AdapterView<?> parent, View view,
-                                           final int position, long id) {
-                // TODO Auto-generated method stub
-                final String idx_guru = itemList.get(position).getId_guru();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                final CharSequence[] dialogitem = {"Detail Data Guru"};
-                dialog = new AlertDialog.Builder(ProfilGuru.this);
-                dialog.setCancelable(true);
-                dialog.setItems(dialogitem, new DialogInterface.OnClickListener() {
+                String getidguru = ((TextView)view.findViewById(R.id.id_guru)).getText().toString();
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        switch (which) {
-                            case 0:
-                                ubah (idx_guru);
-                                break;
-                        }
-                    }
-                }).show();
-                return false;
+                i = new Intent(getApplicationContext(), DetailProfilGuru.class);
+
+                //id_guru, namalengkap, alamat, pendidikan, tmplahir_guru, tgllahir_guru
+                i.putExtra("id_guru",getidguru);
+                view.getContext().startActivity(i);
             }
         });
     }
@@ -155,11 +138,12 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
         txt_namalengkap.setText(null);
         txt_alamat.setText(null);
         txt_pendidikan.setText(null);
-        txt_ttl_guru.setText(null);
+        txt_tmplahir_guru.setText(null);
+        txt_tgllahir_guru.setText(null);
     }
 
     // untuk menampilkan dialog form biodata
-    private void DialogForm(String idx_guru, String namalengkapx, String alamatx, String pendidikanx, String ttlx_guru, String button) {
+    private void DialogForm(String idx_guru, String namalengkapx, String alamatx, String pendidikanx, String tmplahirx_guru, String tgllahirx_guru, String button) {
         dialog = new AlertDialog.Builder(ProfilGuru.this);
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.form_bioguru, null);
@@ -172,14 +156,16 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
         txt_namalengkap    = (EditText) dialogView.findViewById(R.id.txt_nama_lengkap);
         txt_alamat  = (EditText) dialogView.findViewById(R.id.txt_alamat);
         txt_pendidikan    = (EditText) dialogView.findViewById(R.id.txt_pendidikan);
-        txt_ttl_guru    = (EditText) dialogView.findViewById(R.id.txt_ttl_guru);
+        txt_tmplahir_guru    = (EditText) dialogView.findViewById(R.id.txt_tmplahir_guru);
+        txt_tgllahir_guru    = (EditText) dialogView.findViewById(R.id.txt_tgllahir_guru);
 
         if (!idx_guru.isEmpty()){
             txt_id_guru.setText(idx_guru);
             txt_namalengkap.setText(namalengkapx);
             txt_alamat.setText(alamatx);
             txt_pendidikan.setText(pendidikanx);
-            txt_ttl_guru.setText(ttlx_guru);
+            txt_tmplahir_guru.setText(tmplahirx_guru);
+            txt_tgllahir_guru.setText(tgllahirx_guru);
         } else {
             kosong();
         }
@@ -192,7 +178,8 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
                 namalengkap    = txt_namalengkap.getText().toString();
                 alamat      = txt_alamat.getText().toString();
                 pendidikan    = txt_pendidikan.getText().toString();
-                ttl_guru    = txt_ttl_guru.getText().toString();
+                tmplahir_guru    = txt_tmplahir_guru.getText().toString();
+                tgllahir_guru    = txt_tgllahir_guru.getText().toString();
 
                 //simpan_update();
                 dialog.dismiss();
@@ -280,9 +267,10 @@ public class ProfilGuru extends AppCompatActivity implements SwipeRefreshLayout.
                         String namalengkapx         = jObj.getString(TAG_NAMALENGKAP);
                         String alamatx              = jObj.getString(TAG_ALAMAT);
                         String pendidikanx          = jObj.getString(TAG_PENDIDIKAN);
-                        String ttlx_guru            = jObj.getString(TAG_TTL_GURU);
+                        String tmplahirx_guru            = jObj.getString(TAG_TMPLAHIR_GURU);
+                        String tgllahirx_guru            = jObj.getString(TAG_TGLLAHIR_GURU);
 
-                        DialogForm(idx_guru, namalengkapx, alamatx, pendidikanx, ttlx_guru, "");
+                        DialogForm(idx_guru, namalengkapx, alamatx, pendidikanx, tmplahirx_guru, tgllahirx_guru, "");
 
                         adapter.notifyDataSetChanged();
 

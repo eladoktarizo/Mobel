@@ -1,5 +1,6 @@
 package com.example.eladoktarizo.mobel;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -49,8 +51,8 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
     View dialogView;
-    EditText txt_idanak_gs, txt_noindukanak_gs, txt_namaanak_gs, txt_ttlanak_gs, txt_umuranak_gs, txt_namaibuanak_gs;
-    String id_anak_gs, noinduk_anak_gs, nama_lengkap_gs,  ttlahir_gs, umur_gs, namaibu_gs;
+    EditText txt_idanak_gs, txt_noindukanak_gs, txt_namaanak_gs, txt_tmplahir_gs, txt_tgllahir_gs, txt_namaibuanak_gs;
+    String id_anak_gs, noinduk_anak_gs, nama_lengkap_gs,  tmplahir_gs, tgllahir_gs, namaibu_gs;
 
     private static final String TAG = DataAnakGuruSide.class.getSimpleName();
 
@@ -60,8 +62,8 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
     public static final String TAG_ID_ANAK                 = "id_anak";
     public static final String TAG_NOINDUK_ANAK_GS         = "noinduk_anak";
     public static final String TAG_NAMA_LENGKAP_GS         = "nama_lengkap";
-    public static final String TAG_TTLAHIR_GS              = "ttlahir";
-    public static final String TAG_UMUR_GS                 = "umur";
+    public static final String TAG_TMPLAHIR_GS             = "tempat_lahir";
+    public static final String TAG_TGLLAHIR_GS             = "tanggal_lahir";
     public static final String TAG_NAMAIBU_GS              = "namaibu";
     public static final String TAG_IMAGE                   = "file_foto";
     private static final String TAG_SUCCESS                = "success";
@@ -130,6 +132,20 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
                 return false;
             }
         });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String getidanak = ((TextView)view.findViewById(R.id.id_anak)).getText().toString();
+
+                Intent i = new Intent(getApplicationContext(), DetailDataAnakGuruSide.class);
+
+                //id_guru, namalengkap, alamat, pendidikan, tmplahir_guru, tgllahir_guru
+                i.putExtra("id_anak",getidanak);
+                view.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -144,13 +160,13 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
         txt_idanak_gs.setText(null);
         txt_noindukanak_gs.setText(null);
         txt_namaanak_gs.setText(null);
-        txt_ttlanak_gs.setText(null);
-        txt_umuranak_gs.setText(null);
+        txt_tmplahir_gs.setText(null);
+        txt_tgllahir_gs.setText(null);
         txt_namaibuanak_gs.setText(null);
     }
 
     // untuk menampilkan dialog form biodata
-    private void DialogForm(String idx_anak_gs, String noindukx_anak_gs, String namax_lengkap_gs, String ttlahirx_gs, String umurx_gs, String namaibux_gs, String button) {
+    private void DialogForm(String idx_anak_gs, String noindukx_anak_gs, String namax_lengkap_gs, String tmplahirx_gs, String tgllahirx_gs, String namaibux_gs, String button) {
         dialog = new AlertDialog.Builder(DataAnakGuruSide.this);
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.form_dataanak, null);
@@ -162,16 +178,16 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
         txt_idanak_gs         = (EditText) dialogView.findViewById(R.id.txt_id_anak);
         txt_noindukanak_gs    = (EditText) dialogView.findViewById(R.id.txt_noindukanak);
         txt_namaanak_gs       = (EditText) dialogView.findViewById(R.id.txt_namaanak);
-        txt_ttlanak_gs        = (EditText) dialogView.findViewById(R.id.txt_ttlanak);
-        txt_umuranak_gs       = (EditText) dialogView.findViewById(R.id.txt_umuranak);
+        txt_tmplahir_gs        = (EditText) dialogView.findViewById(R.id.txt_tempatlahir);
+        txt_tgllahir_gs       = (EditText) dialogView.findViewById(R.id.txt_tanggallahir);
         txt_namaibuanak_gs    = (EditText) dialogView.findViewById(R.id.txt_namaibuanak);
 
         if (!idx_anak_gs.isEmpty()){
             txt_idanak_gs.setText(idx_anak_gs);
             txt_noindukanak_gs.setText(noindukx_anak_gs);
             txt_namaanak_gs.setText(namax_lengkap_gs);
-            txt_ttlanak_gs.setText(ttlahirx_gs);
-            txt_umuranak_gs.setText(umurx_gs);
+            txt_tmplahir_gs.setText(tmplahirx_gs);
+            txt_tgllahir_gs.setText(tgllahirx_gs);
             txt_namaibuanak_gs.setText(namaibux_gs);
         } else {
             kosong();
@@ -184,8 +200,8 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
                 id_anak_gs      = txt_idanak_gs.getText().toString();
                 noinduk_anak_gs = txt_noindukanak_gs.getText().toString();
                 nama_lengkap_gs = txt_namaanak_gs.getText().toString();
-                ttlahir_gs      = txt_ttlanak_gs.getText().toString();
-                umur_gs         = txt_umuranak_gs.getText().toString();
+                tmplahir_gs      = txt_tmplahir_gs.getText().toString();
+                tgllahir_gs         = txt_tgllahir_gs.getText().toString();
                 namaibu_gs      = txt_namaibuanak_gs.getText().toString();
 
                 dialog.dismiss();
@@ -226,7 +242,7 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
                         item.setId_anak(obj.getString(TAG_ID_ANAK));
                         item.setNoinduk_anak(obj.getString(TAG_NOINDUK_ANAK_GS));
                         item.setNama_lengkap(obj.getString(TAG_NAMA_LENGKAP_GS));
-                        item.setUmur(obj.getString(TAG_UMUR_GS));
+                        //item.setUmur(obj.getString(TAG_UMUR_GS));
                         item.setIv_anak(obj.getString(TAG_IMAGE));
 
                         // menambah item ke array
@@ -272,11 +288,11 @@ public class DataAnakGuruSide extends AppCompatActivity implements SwipeRefreshL
                         String idx_anak_gs         = jObj.getString(TAG_ID_ANAK);
                         String noindukx_anak_gs    = jObj.getString(TAG_NOINDUK_ANAK_GS);
                         String namax_lengkap_gs    = jObj.getString(TAG_NAMA_LENGKAP_GS);
-                        String ttlahirx_gs         = jObj.getString(TAG_TTLAHIR_GS);
-                        String umurx_gs            = jObj.getString(TAG_UMUR_GS);
+                        String tmplahirx_gs         = jObj.getString(TAG_TMPLAHIR_GS);
+                        String tgllahirx_gs            = jObj.getString(TAG_TGLLAHIR_GS);
                         String namaibux_gs         = jObj.getString(TAG_NAMAIBU_GS);
 
-                        DialogForm(idx_anak_gs, noindukx_anak_gs, namax_lengkap_gs, ttlahirx_gs, umurx_gs, namaibux_gs, "");
+                        DialogForm(idx_anak_gs, noindukx_anak_gs, namax_lengkap_gs, tmplahirx_gs, tgllahirx_gs, namaibux_gs, "");
 
                         adapter.notifyDataSetChanged();
 

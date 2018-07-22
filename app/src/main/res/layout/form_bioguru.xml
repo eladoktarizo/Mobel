@@ -25,7 +25,8 @@
         android:editable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"/>
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/txt_alamat"
@@ -36,7 +37,8 @@
         android:editable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"/>
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/txt_pendidikan"
@@ -47,17 +49,31 @@
         android:editable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"/>
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColor="#000000"/>
 
     <EditText
-        android:id="@+id/txt_ttl_guru"
+        android:id="@+id/txt_tmplahir_guru"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:hint="Tempat Tanggal Lahir"
+        android:hint="Tempat Lahir"
         android:singleLine="true"
         android:editable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"/>
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/txt_tgllahir_guru"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Tanggal Lahir"
+        android:singleLine="true"
+        android:editable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColor="#000000"/>
 
 </LinearLayout>

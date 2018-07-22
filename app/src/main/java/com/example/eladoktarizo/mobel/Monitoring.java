@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -57,19 +58,16 @@ public class Monitoring extends AppCompatActivity implements SwipeRefreshLayout.
     View dialogView;
     Intent i;
 
+    String id_anak;
+
     private static final String TAG = Monitoring.class.getSimpleName();
 
     private static String url_select 	 = Server.URL + "select_monitoring.php";
-//    private static String url_insert 	 = Server.URL + "insert.php";
-//    private static String url_edit 	     = Server.URL + "edit.php";
-//    private static String url_update 	 = Server.URL + "update.php";
-//    private static String url_delete 	 = Server.URL + "delete.php";
 
+    //public static final String TAG_ID_ANAK          = "id_anak";
     public static final String TAG_ID_LAPORAN       = "id_laporan";
     public static final String TAG_JUDUL_LAPORAN    = "judul_laporan";
     public static final String TAG_ISI_LAPORAN      = "isi_laporan";
-//    private static final String TAG_SUCCESS = "success";
-//    private static final String TAG_MESSAGE = "message";
 
     String tag_json_obj = "json_obj_req";
 
@@ -89,6 +87,8 @@ public class Monitoring extends AppCompatActivity implements SwipeRefreshLayout.
         //fab     = (FloatingActionButton) findViewById(R.id.fab_add);
         swipe   = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         list    = (ListView) findViewById(R.id.list);
+
+        //id_anak = getIntent().getStringExtra("id_anak");
 
         // untuk mengisi data dari JSON ke dalam adapter
         adapter = new AdapterMonitoring(Monitoring.this, itemList);
@@ -172,7 +172,14 @@ public class Monitoring extends AppCompatActivity implements SwipeRefreshLayout.
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_anak", id_anak);
+                return params;
+            }
+        };
 
         // menambah request ke request queue
         AppController.getInstance().addToRequestQueue(jArr);
